@@ -1,0 +1,1 @@
+var jogo = new Jogo();
