@@ -50,8 +50,6 @@ class Palavra {
       random = Math.floor(Math.random() * (this._palavras.length - 1));
     } while (random == this._lastRandom);
     this._lastRandom = random;
-
-    console.log(random);
     return this._palavras[random];
   }
 

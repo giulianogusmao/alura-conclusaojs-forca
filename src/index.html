@@ -12,6 +12,7 @@
   <!-- build:css -->
   <link rel="stylesheet" href="./css/lacuna.css">
   <link rel="stylesheet" href="./css/sprite.css">
+  <link rel="stylesheet" href="./css/palpite.css">
   <!-- endbuild -->
 </head>
 
@@ -29,15 +30,36 @@
     </ul>
 
     <div class="text-center">
-      <input id="entrada" class="entrada" placeholder="Palavra secreta" autofocus>
+      <p class="mensagem alert"></p>
     </div>
+
+    <ul class="chutes text-center">
+    </ul>
+
+    <div class="group-input text-center">
+      <div style="display: inline-block; max-width: 40em">
+        <!-- <input id="entrada" class="entrada" placeholder="Palavra secreta" autofocus> -->
+        <input type="text" class="form-control input-lg chute" placeholder="Dê um palpite" autofocus maxlength="1">
+      </div>
+    </div>
+    
+    <div class="reiniciar text-center" style="display: none">
+      <br>
+      <button class="btn btn-info btn-lg">De novo!</button>
+    </div>
+    <br><br>
   </div>
 
   <script src="./js/jquery.min.js"></script>
   <script src="./js/sprite.js"></script>
   <script src="./js/palavra.js"></script>
   <script src="./js/jogo.js"></script>
-  <script src="./js/main.js"></script>
+  <script src="./js/jogoController.js"></script>
+  <script>
+    var jogo = new JogoController();
+    jogo.inicia();
+  </script>
+
   <!-- build:js -->
   <!-- endbuild  -->
 </body>
