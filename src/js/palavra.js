@@ -13,7 +13,8 @@ class Palavra {
       'Casa'
     ];
 
-    this.setPalavraSecreta(palavra);
+    this._lastRandom;
+    palavra && this.setPalavraSecreta(palavra);
   }
 
   /**
@@ -43,7 +44,15 @@ class Palavra {
    * @returns {string} - retorna uma palavra aleatória da lista de palavras
    */
   _getNovaPalavra() {
-    return this._palavras[Math.floor(Math.random() * this._palavras.length - 1)];
+    let random;
+    let i = 0;
+    do {
+      random = Math.floor(Math.random() * (this._palavras.length - 1));
+    } while (random == this._lastRandom);
+    this._lastRandom = random;
+
+    console.log(random);
+    return this._palavras[random];
   }
 
   /**

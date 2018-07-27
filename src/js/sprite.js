@@ -10,10 +10,10 @@ class Sprite {
      * Incrementa os frames da forca
      */
     nextFrame() {
+        this._moveFrame(this._currentFrame, ++this._currentFrame);
         if (this.isFinish()) {
             throw Error('Limite de frames excedido! chame o reset para reiniciar a contagem');
         }
-        this._moveFrame(this._currentFrame, ++this._currentFrame);
     }
     
     /**

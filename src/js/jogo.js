@@ -1,40 +1,22 @@
-class Marcador {
-  constructor() {
-    this._sprite = new Sprite('.sprite');
-    this._limpaMarcador();
-  }
-
-  _limpaMarcador() {
-    this._palpitesErrados = [];
-    this._sprite.reset();
-  }
-
-  perdeVida(palpite) {
-    this._sprite.nextFrame();
-
-    if (this._sprite.hasNext()) {
-      this._palpitesErrados.push(palpite);
-    } else {
-      alert('game over!');
-      this._limpaMarcador();
-    }
-  }
-}
-
-
-
 class Jogo {
   constructor() {
     this._lacunas = [];
     this._palpites = [];
 
-    this._marcador = new Marcador();
+    this._sprite = new Sprite('.sprite');
+    this._palavra = new Palavra();
+    // this._marcador = new Marcador();
     this.setPalavraSecreta();
   }
 
+  /**
+   *
+   * @param {string=} palavra
+   */
   setPalavraSecreta(palavra) {
-    this._palavra = new Palavra(palavra);
+    this._palavra.setPalavraSecreta(palavra);
     this._lacunas = this._palavra.getCharsPalavraSecreta();
+    this._palpites = [];
     this.getLacunas();
   }
 
@@ -58,11 +40,28 @@ class Jogo {
 
     if (posicoes.length) {
       this._preencheLacunas(palpite, posicoes);
-    } else {
-      this._marcador.perdeVida(palpite);
+    }
+    else {
+      this._sprite.nextFrame();
     }
   }
 
+  ganhou() {
+    return this._lacunas.length
+      ? !this._lacunas.some(lacuna => lacuna == '')
+      : false;
+  };
 
+  perdeu() {
+    return this._sprite.isFinish();
+  };
 
+  ganhouOuPerdeu() {
+    return this.ganhou() || this.perdeu();
+  };
+
+  reinicia() {
+    this._sprite.reset();
+    this.setPalavraSecreta();
+  };
 }
